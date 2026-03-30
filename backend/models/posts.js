@@ -3,9 +3,9 @@ const Schema = mongoose.Schema
 
 const postSchema = new Schema({
     author: {
-    type: String,
-    required: true,
-    trim: true
+    type: Schema.Types.ObjectId,
+    ref: 'User', 
+    required: true
   },
   content: {
     type: String,
@@ -17,10 +17,12 @@ const postSchema = new Schema({
     type: String,
     default: "https://picsum.photos/id/866/800/600"
   },
-  likes: {
-    type: Number,
-    default: 0
-  },
+  likes: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User'
+    }
+  ],
   created_at: {
     type: Date,
     default: Date.now // If a user makes a new post, it defaults to exactly right now
