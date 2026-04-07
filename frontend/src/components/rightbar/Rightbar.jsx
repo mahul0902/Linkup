@@ -17,8 +17,8 @@ function Rightbar() {
     { id: 3, name: 'Lisa Park', username: 'lisap', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=50&h=50&fit=crop&crop=face' },
   ]
 
-  return (
-    <aside className="w-[320px] bg-slate-800 min-h-screen px-6 py-6 sticky top-0 h-screen overflow-y-auto">
+  return ( 
+    <aside className="w-80 bg-slate-800 min-h-screen sticky top-0 h-screen  pl-6 z-10">
           
       <div className="pl-6 pr-2 py-6 space-y-8">
       <div className="w-full h-4"></div>

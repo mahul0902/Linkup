@@ -30,7 +30,7 @@ function CreatePost({ onPost }) {
           <div className="flex items-center justify-between mt-3">
             <div className="flex gap-2">
               <button className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors">
-                <Image className="w-5 h-5" />
+                <Image className="w-5 h-5"   />
               </button>
               <button className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors">
                 <Smile className="w-5 h-5" />
@@ -38,7 +38,7 @@ function CreatePost({ onPost }) {
             </div>
             <button
               onClick={handleSubmit}
-              className="px-6 py-2 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-700 transition-colors"
+              className=" w-12 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-700 transition-colors"
             >
               Post
             </button>

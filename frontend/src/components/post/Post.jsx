@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { Heart, MessageCircle, Share2, MoreHorizontal } from 'lucide-react'
-
-function Post({ post, onLike }) {
+import CommentModal from '../comment/commentModal'
+function Post({ post, onLike, onAddComment }) {
   const [liked, setLiked] = useState(false)
+  const [expanded, setExpanded] = useState(false)
+  const [showCommentModal, setShowCommentModal] = useState(false)
+  const isLong = post.content.length > 120
+  const shortText = post.content.slice(0, 120)
 
   const handleLike = () => {
     if (!liked) {
@@ -12,7 +16,7 @@ function Post({ post, onLike }) {
   }
 
   return (
-    <article className="p-4 border-b border-gray-200">
+    <article className="p-4 border-b border-gray-200 w-full max-w-full overflow-hidden">
       {/* Post Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
@@ -35,10 +39,7 @@ function Post({ post, onLike }) {
         </button>
       </div>
 
-      {/* Post Content */}
-      <div className="mb-3">
-        <p className="text-gray-800 leading-relaxed">{post.content}</p>
-      </div>
+      
 
       {/* Post Image */}
       {post.image && (
@@ -46,11 +47,23 @@ function Post({ post, onLike }) {
           <img
             src={post.image}
             alt="Post content"
-            className="w-full h-auto object-cover rounded-2xl"
+            className="w-full max-w-full h-auto object-cover rounded-2xl"
           />
         </div>
       )}
+      {/* Post Content */}
+      <div className="mb-3">
+        <p className="text-gray-800 leading-relaxed break-words">{expanded||!isLong? post.content:shortText+ '...'}</p>
+        {isLong && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="text-blue-500 hover:text-blue-600 text-sm font-medium"
+          >
+            {expanded ? 'Show Less' : 'More'}
+          </button>
+        )}
 
+      </div>
       {/* Post Actions */}
       <div className="flex items-center justify-center gap-16 py-4 border-t border-gray-100 mt-2">
         <button
@@ -62,10 +75,21 @@ function Post({ post, onLike }) {
           <Heart className={`w-5 h-5 ${liked ? 'fill-current' : ''}`} />
           <span>{post.likes}</span>
         </button>
-        <button className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors">
+        <button 
+          onClick={() => setShowCommentModal(true)}
+          className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors"
+        >
           <MessageCircle className="w-5 h-5" />
           <span>{post.comments}</span>
         </button>
+        {showCommentModal && (
+          <CommentModal
+            post={post}
+            onClose={() => setShowCommentModal(false)}
+            onAddComment={onAddComment}
+          />
+        )}
+
         <button className="flex items-center gap-2 text-gray-500 hover:text-green-500 transition-colors">
           <Share2 className="w-5 h-5" />
         </button>
