@@ -1,67 +1,41 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import CreatePost from '../createPost/CreatePost.jsx'
 import Post from '../post/Post.jsx'
+import axios from 'axios'
 import CommentModal from '../comment/commentModal.jsx'
 
 
 function Feed() {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      author: 'Sarah Johnson',
-      username: 'sarahj',
-      avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face',
-      time: '2h ago',
-      content: 'Beautiful sunset today! Nature never fails to amaze me',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=400&fit=crop',
-      likes: 234,
-      comments: 12,
-    },
-    {
-      id: 2,
-      author: 'Alex Chen',
-      username: 'alexc',
-      avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=50&h=50&fit=crop&crop=face',
-      time: '4h ago',
-      content: 'Morning coffee hits different',
-      image: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600&h=400&fit=crop',
-      likes: 89,
-      comments: 5,
-      commentsList: [
-        {
-          id: 1,
-          author: 'Sarah Johnson',
-          username: 'sarahj',
-          avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop&crop=face',
-          time: '2h ago',
-          content: 'This is amazing!'
-        },
-        {
-          id: 2,
-          author: 'Alex Chen',
-          username: 'alexc',
-          avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcabd36?w=50&h=50&fit=crop&crop=face',
-          time: '1h ago',
-          content: 'Thanks, Sarah!'
-        }
-      ]
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-    },
-  ])
+  const fetchAllPosts = async () => {
+    try {
+        const response = await axios.get(`${apiUrl}/posts`, {
+            // CRITICAL: This is what forces Axios to attach your session cookie!
+            withCredentials: true 
+        });
 
-  const handleNewPost = (content) => {
-    const newPost = {
-      id: Date.now(),
-      author: 'Ayush Sahu',
-      username: 'samosaPaglu',
-      avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop&crop=face',
-      time: 'Just now',
-      content: content,
-      image: null,
-      likes: 0,
-      comments: 0,
+        // Axios automatically parses the JSON, so the data is ready immediately
+        setPosts(response.data);
+        setLoading(false);
+    } catch (err) {
+        console.error("Error fetching posts:", err);
+        // Axios nests the backend's error message inside err.response.data
+        setError(err.response?.data?.error || "Failed to load feed.");
+        setLoading(false);
     }
-    setPosts([newPost, ...posts])
+  };
+
+    // 3. Run the fetch function exactly once when the component mounts
+    useEffect(() => {
+        fetchAllPosts();
+    }, []);
+
+  const handleNewPost = (newPost) => {
+    setPosts([newPost, ...posts]);
   }
 
   const handleLike = (postId) => {
@@ -102,7 +76,7 @@ return (
     <div className="w-full">
       {posts.map((post) => (
         <Post
-          key={post.id}
+          key={post._id}
           post={post}
           onLike={handleLike}
           onAddComment={handleAddComment} // Pass the new handler

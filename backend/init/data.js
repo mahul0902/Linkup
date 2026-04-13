@@ -66,104 +66,104 @@ export const samplePosts = [
     content: "Just deployed my first full-stack React app! The backend was tricky but we got there. 🚀",
     image: "https://picsum.photos/id/0/800/600",
     created_at: new Date("2026-03-12T10:30:00Z"),
-    comments: ['69c4134944fc15e6f399079c', '69c4134944fc15e6f399079d']
+    comments: ['69cab4f2d5c01e8104cd821d', '69cab4f2d5c01e8104cd8221']
   },
   {
     author: "69cab213f01be088a3ec3c0c",
     content: "Can anyone recommend good resources for practicing quantitative aptitude? Placements are coming up fast...",
     image: "https://picsum.photos/id/4/800/600",
     created_at: new Date("2026-03-11T08:15:00Z"),
-    comments: ['69c4134944fc15e6f399079e', '69c4134944fc15e6f399079f']
+    comments: ['69cab4f2d5c01e8104cd822c', '69cab4f2d5c01e8104cd822e']
   },
   {
     author: "69cab213f01be088a3ec3c0c",
     content: "Coffee and coding. The ultimate duo. ☕💻",
     image: "https://picsum.photos/id/119/800/600",
     created_at: new Date("2026-03-10T18:45:00Z"),
-    comments: ['69c4134944fc15e6f39907a0', '69c4134944fc15e6f39907a1']
+    comments: ['69cab4f2d5c01e8104cd821f', '69cab4f2d5c01e8104cd821a']
   },
   {
     author: "69cab213f01be088a3ec3c11",
     content: "Finally wrapped my head around React state. It makes so much sense once it clicks!",
     image: "https://picsum.photos/id/180/800/600",
     created_at: new Date("2026-03-09T14:20:00Z"),
-    comments: ['69c4134944fc15e6f39907a2', '69c4134944fc15e6f39907a3']
+    comments: ['69cab4f2d5c01e8104cd8226', '69cab4f2d5c01e8104cd8218']
   },
   {
     author: "69cab213f01be088a3ec3c11",
     content: "Taking a much-needed break from debugging to enjoy the sunset.",
     image: "https://picsum.photos/id/111/800/600",
     created_at: new Date("2026-03-08T19:05:00Z"),
-    comments: ['69c4134944fc15e6f39907a4', '69c4134944fc15e6f39907a5']
+    comments: ['69cab4f2d5c01e8104cd8233', '69cab4f2d5c01e8104cd8216']
   },
   {
     author: "69cab213f01be088a3ec3c11",
     content: "Does anyone else get a mini heart attack when npm install throws a bunch of errors?",
     image: "https://picsum.photos/id/20/800/600",
     created_at: new Date("2026-03-08T11:10:00Z"),
-    comments: ['69c4134944fc15e6f39907a6', '69c4134944fc15e6f39907a7']
+    comments: ['69cab4f2d5c01e8104cd8217', '69cab4f2d5c01e8104cd821e']
   },
   {
     author: "69cab214f01be088a3ec3c14",
     content: "Reading up on the Indian Knowledge System and its parallels with modern science. Fascinating stuff! 🧘‍♂️",
     image: "https://picsum.photos/id/367/800/600",
     created_at: new Date("2026-03-07T16:55:00Z"),
-    comments: ['69c4134944fc15e6f39907a8', '69c4134944fc15e6f39907a9']
+    comments: ['69cab4f2d5c01e8104cd8219', '69cab4f2d5c01e8104cd8225']
   },
   {
     author: "69cab214f01be088a3ec3c14",
     content: "Who else is struggling with time and work problems? It feels like hitting a brick wall.",
     image: "https://picsum.photos/id/2/800/600",
     created_at: new Date("2026-03-06T09:30:00Z"),
-    comments: ['69c4134944fc15e6f39907aa', '69c4134944fc15e6f39907ab']
+    comments: ['69cab4f2d5c01e8104cd822a', '69cab4f2d5c01e8104cd8223']
   },
   {
     author: "69cab214f01be088a3ec3c14",
     content: "Setup my new workspace today. Dual monitors are a game changer for web dev.",
     image: "https://picsum.photos/id/60/800/600",
     created_at: new Date("2026-03-05T20:40:00Z"),
-    comments: ['69c4134944fc15e6f39907ac', '69c4134944fc15e6f39907ad']
+    comments: ['69cab4f2d5c01e8104cd8227', '69cab4f2d5c01e8104cd822b']
   },
   {
     author: "69cab214f01be088a3ec3c17",
     content: "Just solved the seating arrangement puzzle that took me 2 hours yesterday. Persistence pays off!",
     image: "https://picsum.photos/id/9/800/600",
     created_at: new Date("2026-03-04T13:15:00Z"),
-    comments: ['69c4134944fc15e6f39907ae', '69c4134944fc15e6f39907af']
+    comments: ['69cab4f2d5c01e8104cd822d', '69cab4f2d5c01e8104cd8220']
   },
   {
     author: "69cab214f01be088a3ec3c17",
     content: "Machine Learning is amazing, but tensor math is no joke. Back to the textbooks...",
     image: "https://picsum.photos/id/250/800/600",
     created_at: new Date("2026-03-04T17:00:00Z"),
-    comments: ['69c4134944fc15e6f39907b0', '69c4134944fc15e6f39907b1']
+    comments: ['69cab4f2d5c01e8104cd8229', '69cab4f2d5c01e8104cd8228']
   },
   {
     author: "69cab214f01be088a3ec3c17",
     content: "Weekend hackathon time! We are building an AI chatbot. Wish us luck! 🤖",
     image: "https://picsum.photos/id/48/800/600",
     created_at: new Date("2026-03-03T10:50:00Z"),
-    comments: ['69c4134944fc15e6f39907b2', '69c4134944fc15e6f39907b3']
+    comments: ['69cab4f2d5c01e8104cd822f', '69cab4f2d5c01e8104cd821b']
   },
   {
     author: "69cab214f01be088a3ec3c1a",
     content: "Git merge conflicts are the absolute worst. Change my mind.",
     image: "https://picsum.photos/id/201/800/600",
     created_at: new Date("2026-03-02T15:25:00Z"),
-    comments: ['69c4134944fc15e6f39907b4', '69c4134944fc15e6f39907b5']
+    comments: ['69cab4f2d5c01e8104cd821c', '69cab4f2d5c01e8104cd8224']
   },
   {
     author: "69cab214f01be088a3ec3c1a",
     content: "Just finished a mock interview. I really need to brush up on my core fundamentals.",
     image: "https://picsum.photos/id/1/800/600",
     created_at: new Date("2026-03-01T09:10:00Z"),
-    comments: ['69c4134944fc15e6f39907b6', '69c4134944fc15e6f39907b7']
+    comments: ['69cab4f2d5c01e8104cd8231', '69cab4f2d5c01e8104cd8222']
   },
   {
     author: "69cab214f01be088a3ec3c1a",
     content: "Studying software project management. It's crazy how much goes into planning before writing a single line of code.",
     image: "https://picsum.photos/id/175/800/600",
     created_at: new Date("2026-03-01T18:35:00Z"),
-    comments: ['69c4134944fc15e6f39907b8', '69c4134944fc15e6f39907b9']
+    comments: ['69cab4f2d5c01e8104cd8230', '69cab4f2d5c01e8104cd8232']
   }
 ];

@@ -5,16 +5,8 @@ function commentModal({ onClose, post, onAddComment }) {
 
   const commentModalRef = useRef(null);
   const [comment, setComment] = useState('');
-  const currentUser = {
-    id: 3,
-    name: 'Ayush Sahu',
-    username: 'samosaPaglu',
-    avatar: 'https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop&crop=face',
-  };
-  const commentsList = post.commentsList || []; // This will now correctly re-render when `post` prop changes from parent
-    
   
-  
+  const commentsList = post.comments || []; // This will now correctly re-render when `post` prop changes from parent
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -51,7 +43,7 @@ const handleCommentSubmit = () => {
         <div className="flex-1 flex flex-col w-140">
          
          <div> 
-          <Post post={post}  />
+          <Post post={post} onLike={() => {}} onAddComment={() => {}}  />
          </div>
          
         </div>
@@ -69,21 +61,31 @@ const handleCommentSubmit = () => {
             
             
             {/* Comment */}
-            {commentsList.map((comment) => (
-              <div key={comment.id} className="flex items-start space-x-2">
-                <img
-                  src={comment.author.avatar}
-                  alt={comment.author.name}
-                  className="w-8 h-8 rounded-full"
-                />
-                <div>
-                  <p className="font-semibold">{comment.author.name}</p>
-                  <p>{comment.content}</p>
-                  <p className="text-xs text-gray-500">{comment.time}</p>
-                </div>
-              </div>
-            ))} 
+            {commentsList.map((comment) => {
+               // Safely extract data with fallbacks
+               const authorName = comment.author?.username || 'Unknown';
+               const authorAvatar = comment.author?.profileImage || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+               
+               // Parse the MongoDB timestamp
+               const commentDate = new Date(comment.createdAt || comment.created_at).toLocaleDateString('en-US', {
+                  month: 'short', day: 'numeric'
+               });
 
+               return (
+                  <div key={comment._id} className="flex items-start space-x-2">
+                    <img
+                      src={authorAvatar}
+                      alt={authorName}
+                      className="w-8 h-8 rounded-full object-cover"
+                    />
+                    <div>
+                      <p className="font-semibold text-sm">{authorName}</p>
+                      <p className="text-sm text-gray-800">{comment.content}</p>
+                      <p className="text-xs text-gray-500">{commentDate}</p>
+                    </div>
+                  </div>
+               )
+            })} 
           </div>
 
 

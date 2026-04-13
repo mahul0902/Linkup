@@ -5,6 +5,7 @@ function Post({ post, onLike, onAddComment }) {
   const [liked, setLiked] = useState(false)
   const [expanded, setExpanded] = useState(false)
   const [showCommentModal, setShowCommentModal] = useState(false)
+  const content = post.content || "";
   const isLong = post.content.length > 120
   const shortText = post.content.slice(0, 120)
 
@@ -15,22 +16,30 @@ function Post({ post, onLike, onAddComment }) {
     }
   }
 
+  const postDate = new Date(post.createdAt || post.created_at).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+  });
+
+  const authorUsername = post.author?.username || 'Unknown User';
+  const authorAvatar = post.author?.profileImage || 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png';
+
   return (
     <article className="p-4 border-b border-gray-200 w-full max-w-full overflow-hidden">
       {/* Post Header */}
       <div className="flex items-start justify-between mb-3">
         <div className="flex items-center gap-3">
           <img
-            src={post.avatar}
-            alt={post.author}
+            src={authorAvatar}
+            alt={authorUsername}
             className="w-12 h-12 rounded-full"
           />
           <div>
             <div className="flex items-center gap-2">
-              <h3 className="font-semibold text-gray-900">{post.author}</h3>
-              <span className="text-gray-500">@{post.username}</span>
+              <h3 className="font-semibold text-gray-900">{authorUsername}</h3>
+              <span className="text-gray-500">@{authorUsername}</span>
               <span className="text-gray-400">·</span>
-              <span className="text-gray-500">{post.time}</span>
+              <span className="text-gray-500">{postDate}</span>
             </div>
           </div>
         </div>
@@ -53,7 +62,9 @@ function Post({ post, onLike, onAddComment }) {
       )}
       {/* Post Content */}
       <div className="mb-3">
-        <p className="text-gray-800 leading-relaxed break-words">{expanded||!isLong? post.content:shortText+ '...'}</p>
+        <p className="text-gray-800 leading-relaxed break-words">
+          {expanded || !isLong ? content : shortText + '...'}
+        </p>
         {isLong && (
           <button
             onClick={() => setExpanded(!expanded)}
@@ -62,8 +73,8 @@ function Post({ post, onLike, onAddComment }) {
             {expanded ? 'Show Less' : 'More'}
           </button>
         )}
-
       </div>
+      
       {/* Post Actions */}
       <div className="flex items-center justify-center gap-16 py-4 border-t border-gray-100 mt-2">
         <button
@@ -73,14 +84,14 @@ function Post({ post, onLike, onAddComment }) {
           }`}
         >
           <Heart className={`w-5 h-5 ${liked ? 'fill-current' : ''}`} />
-          <span>{post.likes}</span>
+          <span>{post.likes?.length}</span>
         </button>
         <button 
           onClick={() => setShowCommentModal(true)}
           className="flex items-center gap-2 text-gray-500 hover:text-blue-500 transition-colors"
         >
           <MessageCircle className="w-5 h-5" />
-          <span>{post.comments}</span>
+          <span>{post.comments?.length}</span>
         </button>
         {showCommentModal && (
           <CommentModal
