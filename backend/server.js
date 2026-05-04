@@ -56,7 +56,7 @@ store.on("error", (err) => {
 
 const sessionOptions = {
   store,
-  secret: process.env.SECRET, // Add this to your .env later!
+  secret: process.env.SECRET, 
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -89,6 +89,10 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+    if (res.headersSent) {
+        return next(err); // Let Express's default error handler take over
+    }
+    
     let{statusCode=500, message = "Something Went Wrong!"} = err;
     res.status(statusCode).json({error: message});
     // res.status(statusCode).send(message);

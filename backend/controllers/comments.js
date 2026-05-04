@@ -8,12 +8,14 @@ export const createComment = async (req, res) => {
         author: author,
         content: req.body.content
     });
-    post.comments.push(newComment);
     await newComment.save();
+    post.comments.push(newComment._id);
     await post.save();
-    res.status(201).json({ 
+
+    const populatedComment = await newComment.populate('author', 'username profileImage');
+    return res.status(201).json({ 
       message: "Comment added successfully!", 
-      comment: newComment 
+      comment: populatedComment 
     });
 }
 
@@ -21,5 +23,5 @@ export const destroyComment = async (req, res) => {
     const { id, commentId } = req.params;
     await Post.findByIdAndUpdate(id, {$pull: {comments: commentId}});
     await Comment.findByIdAndDelete(commentId);
-    res.json({ message: "Comment deleted successfully!" });
+    return res.status(200).json({ message: "Comment deleted successfully!" });
 }

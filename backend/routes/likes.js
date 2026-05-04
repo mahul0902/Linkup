@@ -1,5 +1,5 @@
 import express from 'express';
-const router = express.Router();
+const router = express.Router({mergeParams: true});
 import { wrapAsync } from '../utils/wrapAsync.js';
 import { isLoggedIn } from '../middleware.js';
 import * as likeController from "../controllers/likes.js";

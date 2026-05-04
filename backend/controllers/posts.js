@@ -13,7 +13,7 @@ export const getAllPosts = async (req, res) => {
         }
       })
   // console.log(allPosts);
-  res.status(200).json(allPosts);
+  return res.status(200).json(allPosts);
 }
 
 export const createPost = async (req, res) => {
@@ -27,8 +27,11 @@ export const createPost = async (req, res) => {
       newPost.image = req.file.path;
     }
     await newPost.save();
-    await newPost.populate('author');
-    res.status(201).json({ message: "Post created successfully!", post: newPost });
+    const populatedPost = await Post.findById(newPost._id).populate({
+        path: 'author',
+        select: 'username profileImage'
+    });
+    return res.status(201).json({ message: "Post created successfully!", post: populatedPost });
 }
 
 export const editPost = async (req, res) => {
@@ -50,7 +53,7 @@ export const editPost = async (req, res) => {
     post.image = req.file.path;
   }
   await post.save();
-  res.status(200).json({
+  return res.status(200).json({
     message: "Post updated successfully",
     post: post
   })
@@ -70,6 +73,6 @@ export const destroyPost = async (req, res) => {
       // Tell Cloudinary to destroy the file
       await cloudinary.uploader.destroy(publicId);
     }
-    await Post.findByIdAndDelete(id);
-    res.json({ message: "Post deleted successfully!" });
+    await post.deleteOne();
+    return res.json({ message: "Post deleted successfully!" });
 }

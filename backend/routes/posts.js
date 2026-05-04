@@ -13,6 +13,6 @@ router.route("/")
 
 router.route("/:id")
 .put(isLoggedIn, isPostOwner, upload.single('image'), validatePost, wrapAsync(postController.editPost)) //Edit Post
-.delete(isLoggedIn, isPostOwner, wrapAsync(postController.destroyPost))
+.delete(isLoggedIn, isPostOwner, wrapAsync(postController.destroyPost)) //Delete Post
 
 export default router;

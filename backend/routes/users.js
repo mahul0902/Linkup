@@ -12,9 +12,12 @@ router.route("/login")
 .post(passport.authenticate("local"), wrapAsync(userController.login)) //Login
 
 router.route("/logout")
-.get(wrapAsync(userController.logout))
+.post(wrapAsync(userController.logout)) //Logout
 
 router.route("/")
 .delete(isLoggedIn, wrapAsync(userController.destroyAccount)); //Delete Account
+
+router.route("/auth")
+.get(userController.authUser); //Authorizing User
 
 export default router;

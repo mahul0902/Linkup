@@ -10,8 +10,8 @@ export const like = async (req, res) => {
       return res.status(404).json({ error: "Post not found." });
   }
 
-  // 2. Check if the user's ID is already inside the likes array
-  const hasLiked = post.likes.includes(userId);
+  // 2. Safe check for ObjectIds: Convert both to strings before comparing
+  const hasLiked = post.likes.some((likeId) => likeId.toString() === userId.toString());
 
   if (hasLiked) {
       // UNLIKE: If they already liked it, remove their ID from the array
@@ -25,7 +25,7 @@ export const like = async (req, res) => {
   await post.save();
 
   // 4. Send the updated likes array back to React so the UI can update instantly!
-  res.status(200).json({ 
+  return res.status(200).json({ 
       message: hasLiked ? "Post unliked" : "Post liked",
       likes: post.likes 
   });

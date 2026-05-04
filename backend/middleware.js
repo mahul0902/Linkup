@@ -20,7 +20,7 @@ export const isPostOwner = async (req, res, next) => {
         
     } catch (error) {
         console.error("Authorization error:", error);
-        res.status(500).json({ error: "Something went wrong while checking permissions." });
+        return res.status(500).json({ error: "Something went wrong while checking permissions." });
     }
 }
 
@@ -42,7 +42,7 @@ export const isCommentOwner = async (req, res, next) => {
         
     } catch (error) {
         console.error("Authorization error:", error);
-        res.status(500).json({ error: "Something went wrong while checking permissions." });
+        return res.status(500).json({ error: "Something went wrong while checking permissions." });
     }
 };
 

@@ -23,7 +23,7 @@ export const signup = async (req, res, next) => {
 }
 
 export const login = async (req, res) => {
-  res.status(200).json({
+  return res.status(200).json({
     message: "Welcome back!",
     user: req.user 
     });
@@ -34,7 +34,14 @@ export const logout = async (req, res, next) => {
     if (err) {
       return next(err); 
     }
-    res.status(200).json({ message: "You logged out successfully!" });
+    req.session.destroy((err) => {
+        // 3. Clear the cookie from the user's browser 
+        // (Note: 'connect.sid' is the default name, change it if you customized your session setup)
+        res.clearCookie('connect.sid'); 
+        
+        // 4. Send success response
+        return res.status(200).json({ message: "Logged out successfully!" });
+    });
   });
 }
 
@@ -58,10 +65,19 @@ export const destroyAccount = async (req, res, next) => {
       if (err) {
         return next(err);
       }
-      res.status(200).json({ message: "Account deleted successfully." });
+      return res.status(200).json({ message: "Account deleted successfully." });
     });
   } catch (error) {
     console.error("Error deleting account:", error);
-    res.status(500).json({ error: "Failed to delete account." });
+    return res.status(500).json({ error: "Failed to delete account." });
   }
+}
+
+export const authUser = (req, res) => {
+  if (!req.user) {
+    return res.status(401).json({ user: null });
+  }
+    
+    // Send back the user data (make sure to exclude the password in your actual query/model!)
+  return res.status(200).json({ user: req.user });
 }

@@ -2,7 +2,7 @@ import mongoose from "mongoose"
 const Schema = mongoose.Schema
 
 const commentSchema = new Schema({
-    author: {
+  author: {
     type: Schema.Types.ObjectId,
     ref: 'User',
     required: true
