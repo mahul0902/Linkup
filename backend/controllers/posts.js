@@ -1,4 +1,5 @@
 import { Post } from "../models/posts.js";
+import { Comment } from "../models/comment.js";
 import { v2 as cloudinary } from 'cloudinary';
 
 export const getAllPosts = async (req, res) => {
