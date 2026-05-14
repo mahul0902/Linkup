@@ -1,89 +1,216 @@
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useAuth } from '../context/AuthContext.jsx';
 import axios from 'axios';
 
-function Signup() {
+function Signup({ setIsLogin }) {
+
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  
+
   const navigate = useNavigate();
+
   const apiUrl = import.meta.env.VITE_API_URL;
+
   const { setAuthUser } = useAuth();
 
   const handleSignup = async (e) => {
+
     e.preventDefault();
+
     setError(null);
 
     try {
-      const response = await axios.post(`${apiUrl}/users/signup`, 
+
+      const response = await axios.post(
+        `${apiUrl}/users/signup`,
         { email, username, password },
-        { 
-          // CRITICAL: Tells the browser to save the session cookie sent by your backend!
-          withCredentials: true 
+        {
+          withCredentials: true
         }
       );
 
-      if (response.status === 201 || response.status === 200) {
+      if (
+        response.status === 201 ||
+        response.status === 200
+      ) {
+
         setAuthUser(response.data.user);
-        toast.success(response.data.message || 'Signed up Successfully!');
-        // Success! Route the user to the Feed page
-        navigate('/home'); 
+
+        toast.success(
+          response.data.message ||
+          "Signed up Successfully!"
+        );
+
+        navigate('/home');
       }
+
     } catch (err) {
-      console.error("Signup error:", err);
-    //   setError(err.response?.data?.error || "Sign up failed. Please try again.");
-      toast.error("Signup failed.");
+
+      console.log("FULL ERROR:", err);
+
+      toast.error(
+        err.response?.data?.message ||
+        "Signup failed"
+      );
     }
   };
 
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-900">Join Linkup</h2>
-        
-        {error && <div className="mb-4 text-red-500 text-sm text-center">{error}</div>}
+ return (
 
-        <form onSubmit={handleSignup} className="flex flex-col gap-4">
-          <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className="p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-            required
-          />
-          <button type="submit" className="bg-blue-500 text-white p-3 rounded font-semibold hover:bg-blue-600 transition-colors">
-            Sign Up
-          </button>
-        </form>
+  <div className="bg-white w-full max-w-xl min-h-70 px rounded-3xl shadow-2xl px-12 py-14 flex flex-col justify-center">
 
-        <p className="mt-4 text-center text-sm text-gray-600">
-          Already have an account?{' '}
-          <Link to="/login" className="text-blue-500 hover:underline">Log In</Link>
-        </p>
-      </div>
+    {/* HEADING */}
+
+    <div className="mb-10">
+
+      <h2 className="text-4xl font-bold font-['Poppins'] tracking-tight text-center text-gray-900">
+        Join Linkup
+      </h2>
+
+      <p className="text-gray-500 text-base text-center mt-3">
+        Create your account and start connecting today.
+      </p>
+
     </div>
-  );
+
+    {/* ERROR */}
+
+    {error && (
+
+      <div className="mb-6 text-red-500 text-sm text-center">
+        {error}
+      </div>
+
+    )}
+
+    {/* FORM */}
+
+    <form
+      onSubmit={handleSignup}
+      className="flex flex-col gap-6"
+    >
+
+      {/* EMAIL */}
+
+      <input
+        type="email"
+        placeholder="Email Address"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        className="
+          w-full
+          p-4
+          border
+          border-gray-200
+          rounded-2xl
+          bg-gray-50
+          text-gray-800
+          placeholder:text-gray-400
+          focus:outline-none
+          focus:ring-2
+          focus:ring-blue-500
+          transition-all
+        "
+        required
+      />
+
+      {/* USERNAME */}
+
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="
+          w-full
+          p-4
+          border
+          border-gray-200
+          rounded-2xl
+          bg-gray-50
+          text-gray-800
+          placeholder:text-gray-400
+          focus:outline-none
+          focus:ring-2
+          focus:ring-blue-500
+          transition-all
+        "
+        required
+      />
+
+      {/* PASSWORD */}
+
+      <input
+        type="password"
+        placeholder="Password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        className="
+          w-full
+          p-4
+          border
+          border-gray-200
+          rounded-2xl
+          bg-gray-50
+          text-gray-800
+          placeholder:text-gray-400
+          focus:outline-none
+          focus:ring-2
+          focus:ring-blue-500
+          transition-all
+        "
+        required
+      />
+
+      {/* BUTTON */}
+
+      <button
+        type="submit"
+        className="
+          mt-2
+          bg-blue-500
+          text-white
+          p-4
+          rounded-2xl
+          font-semibold
+          text-lg
+          hover:bg-blue-600
+          transition-all
+          duration-200
+          hover:scale-[1.01]
+          active:scale-[0.98]
+        "
+      >
+        Create Account
+      </button>
+
+    </form>
+
+    {/* SWITCH */}
+
+    <p className="mt-8 text-center text-base text-gray-600">
+
+      Already have an account?{" "}
+
+      <button
+        onClick={() => setIsLogin(true)}
+        className="
+          text-blue-500
+          font-semibold
+          hover:underline
+        "
+      >
+        Log In
+      </button>
+
+    </p>
+
+  </div>
+)
 }
 
 export default Signup;

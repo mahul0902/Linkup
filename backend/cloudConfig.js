@@ -9,11 +9,11 @@ cloudinary.config({
 });
 
 const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
+  cloudinary,
   params: {
     folder: 'linkup',
-    allowedFormats: ["png", "jpg", "jpeg"]
+    allowed_formats: ["png", "jpg", "jpeg"]
   },
 });
 
-export {cloudinary, storage};
+export { cloudinary, storage };

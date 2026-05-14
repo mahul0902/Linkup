@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import axios from 'axios';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 // 1. Create the Context
 const AuthContext = createContext();
@@ -46,8 +47,19 @@ export const AuthProvider = ({ children }) => {
     if (loading) {
         return (
             <div className="h-screen w-screen flex justify-center items-center bg-gray-50">
-                <p className="text-xl font-semibold text-gray-500">Loading Linkup...</p>
-            </div>
+                
+
+
+
+
+   <div className="w-105 flex flex-col items-center"> <DotLottieReact
+      src="https://lottie.host/96d899e1-0537-4c5b-baf1-069114d75655/Q9NI4v8n4x.lottie"
+      loop
+      autoplay
+    />
+  
+    <p className="text-xl font-semibold text-gray-500">Loading Linkup...</p>
+          </div>  </div>
         );
     }
 
