@@ -150,7 +150,7 @@ function Post({ post, onLike, onAddComment, onDelete, onDeleteComment }) {
       )}
       {/* Post Content */}
       <div className="mb-3">
-        <p className="text-gray-800 leading-relaxed wrap-break-words">
+        <p className="text-gray-500 leading-relaxed wrap-break-words">
           {expanded || !isLong ? content : shortText + '...'}
         </p>
         {isLong && (
@@ -186,7 +186,8 @@ function Post({ post, onLike, onAddComment, onDelete, onDeleteComment }) {
           <CommentModal
             post={post}
             onClose={() => setShowCommentModal(false)}
-            onAddComment={onAddComment}
+            onLike={onLike}
+            
             onDeleteComment={onDeleteComment}
           />
         )}

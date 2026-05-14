@@ -17,81 +17,260 @@ function Rightbar() {
     { id: 3, name: 'Lisa Park', username: 'lisap', avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=50&h=50&fit=crop&crop=face' },
   ]
 
-  return ( 
-    <aside className="w-80 bg-slate-800 min-h-screen sticky top-0 h-screen  pl-6 z-10">
-          
-      <div className="pl-6 pr-2 py-6 space-y-8">
-      <div className="w-full h-4"></div>
-      {/* Stories */}
-      <section className="mb-6">
-        <h2 className="text-white font-bold text-xl mb-4">Stories</h2>
-        <div className="flex gap-3">
-          {stories.map((story) => (
-            <div key={story.id} className="flex flex-col items-center">
-              <div className="w-20 h-28 rounded-xl overflow-hidden relative cursor-pointer hover:opacity-90 transition-opacity">
-                <img
-                  src={story.image}
-                  alt={story.name}
-                  className="w-full h-full object-cover"
-                />
-                {story.isOwn && (
-                  <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center text-white text-lg">
-                    +
-                  </div>
-                )}
-              </div>
-              <span className="text-slate-300 text-xs mt-2">{story.name}</span>
-            </div>
-          ))}
+return (
+
+  <aside className="
+    w-85
+    min-h-screen
+    bg-slate-950
+    border-l
+    border-slate-800
+    sticky
+    top-0
+    h-screen
+    px-6
+    py-8
+    overflow-y-auto
+  ">
+
+    <div className="space-y-8">
+
+      {/* CHATS */}
+
+      <section className="
+        bg-slate-900/80
+        border
+        border-slate-800
+        rounded-l
+        p-6
+        shadow-xl
+      ">
+
+        <div className="flex items-center justify-between mb-6">
+
+          <h2 className="
+            text-white
+            text-lg
+            font-bold
+            font-['Poppins']
+          ">
+            Chats
+          </h2>
+
+          <button className="
+            text-sm
+            text-blue-400
+            hover:text-blue-300
+            transition-colors
+          ">
+            View all
+          </button>
+
         </div>
-      </section>
-      <div className="w-full h-8"></div>
-      {/* Chats */}
-      <section className="mb-8 p-4  rounded-lg">
-        <h2 className="text-white font-bold text-xl mb-5">Chats</h2>
-        <div className="space-y-6">
-          {chats.map((chat) => (
-            <div key={chat.id} className="flex items-center gap-4 py-2 rounded-lg hover:bg-slate-700 cursor-pointer transition-colors">
-              <img
-                src={chat.avatar}
-                alt={chat.name}
-                className="w-12 h-12 rounded-full object-cover"
-              />
-              <div className="flex-1 min-w-0">
-                <h3 className="text-white font-semibold text-base">{chat.name}</h3>
-                <p className="text-slate-400 text-sm truncate">{chat.message}</p>
-              </div>
-              <span className="text-slate-500 text-sm">{chat.time}</span>
-            </div>
-          ))}
-        </div>
-      </section>
-       <div className="w-full h-8"></div>
-      {/* Suggestions */}
-      <section>
-        <h2 className="text-white font-bold text-xl mb-5">Suggestions</h2>
+
         <div className="space-y-4">
+
+          {chats.map((chat) => (
+
+            <div
+              key={chat.id}
+              className="
+                flex
+                items-center
+                gap-4
+                p-3
+                rounded-lg
+                hover:bg-slate-800
+                cursor-pointer
+                transition-all
+                duration-200
+              "
+            >
+
+              {/* AVATAR */}
+
+              <div className="relative">
+
+                <img
+                  src={chat.avatar}
+                  alt={chat.name}
+                  className="
+                    w-14
+                    h-14
+                    rounded-full
+                    object-cover
+                    border-2
+                    border-slate-700
+                  "
+                />
+
+                {/* ONLINE STATUS */}
+
+             
+
+              </div>
+
+              {/* TEXT */}
+
+              <div className="flex-1 min-w-0">
+
+                <h3 className="
+                  text-white
+                  font-semibold
+                  truncate
+                ">
+                  {chat.name}
+                </h3>
+
+                <p className="
+                  text-slate-400
+                  text-sm
+                  truncate
+                  mt-1
+                ">
+                  {chat.message}
+                </p>
+
+              </div>
+
+              {/* TIME */}
+
+              <span className="
+                text-slate-500
+                text-xs
+                whitespace-nowrap
+              ">
+                {chat.time}
+              </span>
+
+            </div>
+
+          ))}
+
+        </div>
+
+      </section>
+      {/* gap */}
+      <div className="h-20"  />
+      
+
+      {/* SUGGESTIONS */}
+
+      <section className="
+        bg-slate-900/80
+        border
+        border-slate-800
+        rounded-lg
+        p-6
+        shadow-xl
+      ">
+
+        <div className="flex items-center justify-between mb-6">
+
+          <h2 className="
+            text-white
+            text-lg
+            font-bold
+            font-['Poppins']
+          ">
+            Suggestions
+          </h2>
+
+          <button className="
+            text-sm
+            text-blue-400
+            hover:text-blue-300
+            transition-colors
+          ">
+            Refresh
+          </button>
+
+        </div>
+
+        <div className="space-y-5">
+
           {suggestions.map((user) => (
-            <div key={user.id} className="flex items-center gap-4 py-2">
+
+            <div
+              key={user.id}
+              className="
+                flex
+                items-center
+                gap-4
+              "
+            >
+
+              {/* AVATAR */}
+
               <img
                 src={user.avatar}
                 alt={user.name}
-                className="w-12 h-12 rounded-full object-cover"
+                className="
+                  w-14
+                  h-14
+                  rounded-full
+                  object-cover
+                  border-2
+                  border-slate-700
+                "
               />
+
+              {/* USER INFO */}
+
               <div className="flex-1 min-w-0">
-                <h3 className="text-white font-semibold text-base">{user.name}</h3>
-                <p className="text-slate-400 text-sm">@{user.username}</p>
+
+                <h3 className="
+                  text-white
+                  font-semibold
+                  truncate
+                ">
+                  {user.name}
+                </h3>
+
+                <p className="
+                  text-slate-400
+                  text-sm
+                  truncate
+                ">
+                  @{user.username}
+                </p>
+
               </div>
-              <button className="px-5 py-2 bg-blue-500 text-white text-sm font-semibold rounded-full hover:bg-blue-600 transition-colors">
-                Follow
+
+              {/* FOLLOW BUTTON */}
+
+              <button className="
+                px-5
+                py-2.5
+                bg-linear-to-r
+                from-blue-500
+                to-indigo-600
+                text-white
+                text-sm
+                font-semibold
+                rounded-lg
+                hover:opacity-90
+                transition-all
+                duration-200
+                hover:scale-[1.03]
+                active:scale-[0.98]
+                shadow-lg
+              ">
+                 <h1>‎ ‎ Follow ‎ ‎  </h1> 
               </button>
+
             </div>
+
           ))}
+
         </div>
+
       </section>
-      </div>
-          </aside>
-  )
+
+    </div>
+
+  </aside>
+)
 }
 
 export default Rightbar

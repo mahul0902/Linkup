@@ -1,12 +1,12 @@
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 // import { Image, Smile } from 'lucide-react'
-import { Image as ImageIcon, X } from 'lucide-react';
-import axios from 'axios';
-import toast from 'react-hot-toast';
-import { useAuth } from '../../context/AuthContext.jsx';
+import { Image as ImageIcon, X } from "lucide-react";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 function CreatePost({ onPost }) {
-  const [content, setContent] = useState('');
+  const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -28,7 +28,7 @@ function CreatePost({ onPost }) {
   const clearImage = () => {
     setImageFile(null);
     setImagePreview(null);
-    if (fileInputRef.current) fileInputRef.current.value = '';
+    if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
   const handleSubmit = async () => {
@@ -38,25 +38,25 @@ function CreatePost({ onPost }) {
 
     // 1. Package the data. We MUST use FormData to send files to the backend.
     const formData = new FormData();
-    formData.append('content', content);
+    formData.append("content", content);
     if (imageFile) {
-      formData.append('image', imageFile);
+      formData.append("image", imageFile);
     }
 
     try {
       // 2. Send to backend
       const response = await axios.post(`${apiUrl}/posts`, formData, {
         withCredentials: true,
-        headers: { 'Content-Type': 'multipart/form-data' } // Required for files!
+        headers: { "Content-Type": "multipart/form-data" }, // Required for files!
       });
 
       if (response.status === 201) {
         toast.success("Post created!");
-        
+
         // 3. Reset UI
-        setContent('');
+        setContent("");
         clearImage();
-        
+
         // 4. Update the feed
         if (onPost) {
           onPost(response.data.post);
@@ -68,13 +68,16 @@ function CreatePost({ onPost }) {
     } finally {
       setIsSubmitting(false);
     }
-  }
+  };
 
   return (
     <div className="p-4 border-b border-gray-200">
       <div className="flex gap-3">
         <img
-          src={authUser?.profileImage || "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop&crop=face"}
+          src={
+            authUser?.profileImage ||
+            "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=50&h=50&fit=crop&crop=face"
+          }
           alt="Your avatar"
           className="w-12 h-12 rounded-full"
         />
@@ -90,9 +93,9 @@ function CreatePost({ onPost }) {
           {/* Image Preview Area */}
           {imagePreview && (
             <div className="relative mt-2 w-full max-w-md">
-              <img 
-                src={imagePreview} 
-                alt="Upload preview" 
+              <img
+                src={imagePreview}
+                alt="Upload preview"
                 className="w-full h-auto rounded-xl object-cover border border-gray-200"
               />
               <button
@@ -107,16 +110,19 @@ function CreatePost({ onPost }) {
           <div className="flex items-center justify-between mt-3">
             <div className="flex gap-2">
               {/* Hidden file input */}
-              <input 
-                type="file" 
-                accept="image/*" 
+              <input
+                type="file"
+                accept="image/*"
                 ref={fileInputRef}
                 onChange={handleImageChange}
-                className="hidden" 
+                className="hidden"
               />
               {/* Button that triggers the hidden input */}
-              <button onClick={() => fileInputRef.current.click()} className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors">
-                <ImageIcon className="w-5 h-5"   />
+              <button
+                onClick={() => fileInputRef.current.click()}
+                className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors"
+              >
+                <ImageIcon className="w-5 h-5" />
               </button>
               {/* <button className="p-2 text-gray-500 hover:text-blue-500 hover:bg-blue-50 rounded-full transition-colors">
                 <Smile className="w-5 h-5" />
@@ -125,15 +131,24 @@ function CreatePost({ onPost }) {
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || (!content.trim() && !imageFile)}
-              className=" w-12 bg-slate-800 text-white font-semibold rounded-full hover:bg-slate-700 transition-colors"
+              className="
+               w-12
+                bg-linear-to-r
+                from-blue-500
+                to-indigo-600
+                text-white
+               font-semibold 
+               rounded-full 
+               hover:bg-slate-700 
+               transition-colors"
             >
-              {isSubmitting ? 'Posting...' : 'Post'}
+              {isSubmitting ? "Posting..." : "Post"}
             </button>
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default CreatePost
+export default CreatePost;

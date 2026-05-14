@@ -16,11 +16,11 @@ function Feed() {
         });
 
         // Axios automatically parses the JSON, so the data is ready immediately
-        setPosts(response.data);
+        setPosts(response.data);        
     } catch (err) {
         console.error("Error fetching posts:", err);
         // Axios nests the backend's error message inside err.response.data
-        setError(err.response?.data?.error || "Failed to load feed.");
+        setError(err.response?.data?.error || "Failed to load feed.");        
     }
   };
 
