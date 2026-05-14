@@ -119,9 +119,7 @@ export default function Auth() {
           <Signup setIsLogin={setIsLogin} />
 
         )}
-
       </div>
-
     </div>
   );
 }

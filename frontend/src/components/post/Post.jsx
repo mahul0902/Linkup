@@ -187,7 +187,7 @@ function Post({ post, onLike, onAddComment, onDelete, onDeleteComment }) {
             post={post}
             onClose={() => setShowCommentModal(false)}
             onLike={onLike}
-            
+            onAddComment={onAddComment}
             onDeleteComment={onDeleteComment}
           />
         )}
