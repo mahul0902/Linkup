@@ -61,7 +61,7 @@ function Signup({ setIsLogin }) {
 
  return (
 
-  <div className="bg-white w-full max-w-xl min-h-70 px rounded-3xl shadow-2xl px-12 py-14 flex flex-col justify-center">
+  <div className="bg-white w-full max-w-xl min-h-70 px rounded-3xl shadow-2xl px-12 px py-14 px flex flex-col justify-center">
 
     {/* HEADING */}
 
@@ -189,6 +189,7 @@ function Signup({ setIsLogin }) {
       </button>
 
     </form>
+    
 
     {/* SWITCH */}
 
