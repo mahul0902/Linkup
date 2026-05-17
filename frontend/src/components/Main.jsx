@@ -7,7 +7,7 @@ function Main() {
     <div className="flex min-h-screen bg-gray-100 gap-30 px-6 py-6 z-0">
       <Sidebar  />
       <Feed />    
-      <Rightbar />
+      {/* <Rightbar /> */}
     </div>
   )
 }

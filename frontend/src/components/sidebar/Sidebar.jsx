@@ -7,9 +7,9 @@ import toast from "react-hot-toast";
 function Sidebar() {
   const navItems = [
     { icon: Home, label: "Home", active: true },
-    { icon: Search, label: "Explore", active: false },
-    { icon: Users, label: "Friends", active: false },
-    { icon: Bell, label: "Notifications", active: false },
+    // { icon: Search, label: "Explore", active: false },
+    // { icon: Users, label: "Friends", active: false },
+    // { icon: Bell, label: "Notifications", active: false },
   ];
 
   const { authUser, setAuthUser } = useAuth();

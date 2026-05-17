@@ -187,7 +187,9 @@ return (
             Comments
           </h2>
 
-          <button className="
+          <button
+          onClick={onClose} 
+          className="
             w-10
             h-10
             rounded-xl
