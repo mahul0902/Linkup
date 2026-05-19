@@ -34,7 +34,7 @@ LinkUp is a full-stack social media web application developed as a Minor Project
 ## 📂 Folder Structure
 
 ```bash
-linkup/
+Linkup/
 ├── frontend/
 │    ├── src/
 │    │    ├── components/
@@ -57,7 +57,7 @@ linkup/
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/mahul0902/Linkup.git
-cd linkup
+cd Linkup
 ```
 
 ### 2. Frontend Setup
@@ -69,10 +69,11 @@ npm run dev
 
 ### 3. Backend Setup
 ```bash
-cd ../backend
+cd backend
 npm install
-npm start
+npm run dev
 ```
+
 ---
 
 ## 🔑 Environment Variables
@@ -85,14 +86,17 @@ Create a `.env` file inside the respective directories if required.
 VITE_API_URL=http://localhost:5000
 ```
 
-### Backend (backend/.env)
+### Backend (`backend/.env`)
 
 ```env
 PORT=5000
-MONGO_URI=your_mongodb_connection_string
+MONGO_URL=your_mongodb_connection_string
 ```
 
+---
+
 ## 📸 Screenshots
+
 ### Landing Page
 ![Landing Page](assets/screenshots/landing.png)
 
@@ -101,9 +105,6 @@ MONGO_URI=your_mongodb_connection_string
 
 ### Signup Page
 ![Signup](assets/screenshots/signup.png)
-
-### Feed Page
-![Feed](assets/screenshots/feed.png)
 
 ### Comment Page
 ![Comment](assets/screenshots/comment.png)
