@@ -103,7 +103,7 @@ function Signup({ setIsLogin }) {
         onChange={(e) => setEmail(e.target.value)}
         className="
           w-full
-          px-5
+          px-5 py-4
           border
           border-gray-200
           rounded-2xl
