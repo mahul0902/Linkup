@@ -20,7 +20,7 @@ const dbUrl = process.env.ATLASDB_URL;
 const corsOptions = {
     // Replace this with the exact URL your React app runs on! 
     // (If you use Vite, it's usually http://localhost:5173)
-    origin: 'http://localhost:5173', 
+    origin: 'https://linkup-five-drab.vercel.app/', 
     
     // THIS IS THE MOST IMPORTANT LINE FOR PASSPORT!
     // It tells Express to accept the session cookies React sends it.
