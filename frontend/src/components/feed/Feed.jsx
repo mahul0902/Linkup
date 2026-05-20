@@ -78,7 +78,7 @@ function Feed() {
   };
 
   return (
-    <main className="flex-1 min-w-80 bg-white min-h-screen border-r border-gray-200 overflow-x-hidden">
+    <main className="flex-1 min-w-80 bg-white min-h-screen border-r border-gray-200 ">
       
       {/* Header */}
       <div className="p-4 border-b border-gray-200">
