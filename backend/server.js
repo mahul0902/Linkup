@@ -99,5 +99,5 @@ app.use((err, req, res, next) => {
 })
 
 app.listen(8080, () => {
-  console.log(`Server is running on http://localhost:8080`);
+  console.log(`Server is running on https://linkup-lqr0.onrender.com`);
 });
