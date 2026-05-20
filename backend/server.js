@@ -17,14 +17,22 @@ const app = express()
 
 const dbUrl = process.env.ATLASDB_URL;
 
+const allowedOrigins = [
+    "http://localhost:5173",
+    "https://linkup-five-drab.vercel.app" // Your Vercel URL (NO trailing slash!)
+];
+
 const corsOptions = {
-    // Replace this with the exact URL your React app runs on! 
-    // (If you use Vite, it's usually http://localhost:5173)
-    origin: 'https://linkup-five-drab.vercel.app/', 
-    
-    // THIS IS THE MOST IMPORTANT LINE FOR PASSPORT!
-    // It tells Express to accept the session cookies React sends it.
-    credentials: true 
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    }, 
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 };
 
 main()
