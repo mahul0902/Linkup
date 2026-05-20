@@ -62,6 +62,7 @@ store.on("error", (err) => {
     console.log("ERROR in MONGO SESSION STORE", err);
 });
 
+const isProduction = process.env.NODE_ENV === 'production';
 app.set('trust proxy', 1);
 
 const sessionOptions = {
@@ -71,7 +72,8 @@ const sessionOptions = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    secure: true,
+    secure: isProduction,
+    sameSite: isProduction ? 'none' : 'lax',
     expires: Date.now() + 1000 * 60 * 60 * 24 * 7, // Cookie expires in 1 week
     maxAge: 1000 * 60 * 60 * 24 * 7
   }
