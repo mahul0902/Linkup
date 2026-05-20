@@ -60,6 +60,7 @@ function Sidebar() {
   justify-between
   sticky
   top-0
+  rounded-2xl
   "
     >
       {/* LOGO */}
